@@ -13,10 +13,18 @@ const addTaskButton = document.getElementById("add-task");
 
 //load tasks from local storage
 const task = loadTasks();
+
+task.array.forEach(element => {
+    addTask(element, taskList);
+});
 //add event listener for new task
 addTaskButton.addEventListener("click", () =>{
     const task = newTaskInput.value.trim();
-    taskList.push(task);
-    saveTask(task);
-    clearInput(newTaskInput);
+    if(task) {
+        addTask(task, taskList);
+        taskList.push(task);
+        saveTask(task);
+        clearInput(newTaskInput);
+    }
+
 });
